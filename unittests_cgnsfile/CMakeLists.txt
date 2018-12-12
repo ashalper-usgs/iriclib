@@ -51,7 +51,11 @@ endif()
 
 # library dependencies
 find_library(CGNS_LIBRARY cgns)
-find_package(HDF5 NAMES hdf5)
+if (WIN32)
+  find_package(HDF5 NAMES hdf5)
+else()
+  find_library(HDF5_LIBRARIES hdf5)
+endif()
 
 SET(EXTRA_LIBS ${EXTRA_LIBS} iriclib ${CGNS_LIBRARY} ${HDF5_LIBRARIES})
 
