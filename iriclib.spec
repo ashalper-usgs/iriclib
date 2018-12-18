@@ -27,7 +27,7 @@ developing applications that use %{name}.
 
 
 %prep
-%setup -q -n %{name}-rpmbuild
+%setup -q -n %{name}
 
 
 %build
@@ -53,5 +53,5 @@ cd _build
 
 
 %changelog
-* Wed Dec 12 2018 Andrew Halper <ashalper@usgs.gov> - 0.1-1>
+* Tue Dec 18 2018 Andrew Halper <ashalper@usgs.gov> - 0.1-1>
 - Built on CentOS 7.
