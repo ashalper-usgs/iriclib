@@ -29,5 +29,4 @@ cp -r appveyor.yml bins/ build-iriclib.cmake build-iriclib.sh \
     unittest_cg_open_modify/ unittest_cg_open_read/ unittest_lock/ \
     unittests/ unittests_cgnsfile/ lib/src/iriclib
 
-ctest -S build-iriclib.cmake -DCONF_DIR:STRING=debug   "-DCTEST_CMAKE_GENERATOR:STRING=$GENERATOR" -C Debug   -VV -O $SGEN-iriclib-debug.log
 ctest -S build-iriclib.cmake -DCONF_DIR:STRING=release "-DCTEST_CMAKE_GENERATOR:STRING=$GENERATOR" -C Release -VV -O $SGEN-iriclib-release.log
