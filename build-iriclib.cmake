@@ -10,8 +10,8 @@ if(WIN32 AND ${CGNS_VER} STREQUAL "3.2.1")
   set(CGNS_VER "$ENV{CGNSLIB_VER}-patch1")
 endif()
 
-set(CTEST_SOURCE_DIRECTORY "${CTEST_SCRIPT_DIRECTORY}/lib/src/iriclib-${SVER}")
-set(CTEST_BINARY_DIRECTORY "${CTEST_SCRIPT_DIRECTORY}/lib/build/iriclib-${SVER}/${CONF_DIR}")
+set(CTEST_SOURCE_DIRECTORY "${CTEST_SCRIPT_DIRECTORY}/lib/src/iriclib")
+set(CTEST_BINARY_DIRECTORY "${CTEST_SCRIPT_DIRECTORY}/lib/build/iriclib/${CONF_DIR}")
 
 # build PREFIX_PATH (Note the escaped semicolon)
 if (WIN32)
@@ -23,7 +23,7 @@ set(PREFIX_PATH "${PREFIX_PATH}\;${CTEST_SCRIPT_DIRECTORY}/lib/install/cgnslib-$
 
 # override LIBDIR to be consistent w/ hdf5 and cgns
 set(BUILD_OPTIONS 
-"-DCMAKE_INSTALL_PREFIX:PATH=${CTEST_SCRIPT_DIRECTORY}/lib/install/iriclib-${SVER}/${CONF_DIR}"
+"-DCMAKE_INSTALL_PREFIX:PATH=${CTEST_SCRIPT_DIRECTORY}/lib/install/iriclib/${CONF_DIR}"
 "-DCMAKE_PREFIX_PATH:PATH=${PREFIX_PATH}"
 "-DCMAKE_INSTALL_LIBDIR:PATH=lib"
 )
