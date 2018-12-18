@@ -3,7 +3,7 @@ set(CTEST_BUILD_NAME "$ENV{SGEN}-iriclib")
 set(CTEST_SITE "$ENV{COMPUTERNAME}")
 
 set(VER "$ENV{IRICLIB_VER}")
-string(SUBSTRING ${VER} 0 7 SVER)
+string(SUBSTRING ${VER} 0 3 SVER)
 set(CGNS_VER "$ENV{CGNSLIB_VER}")
 set(HDF5_VER "$ENV{HDF5_VER}")
 if(WIN32 AND ${CGNS_VER} STREQUAL "3.2.1")
@@ -21,12 +21,29 @@ else()
 endif()
 set(PREFIX_PATH "${PREFIX_PATH}\;${CTEST_SCRIPT_DIRECTORY}/lib/install/cgnslib-${CGNS_VER}/${CONF_DIR}")
 
-# override LIBDIR to be consistent w/ hdf5 and cgns
-set(BUILD_OPTIONS 
-"-DCMAKE_INSTALL_PREFIX:PATH=${CTEST_SCRIPT_DIRECTORY}/lib/install/iriclib/${CONF_DIR}"
-"-DCMAKE_PREFIX_PATH:PATH=${PREFIX_PATH}"
-"-DCMAKE_INSTALL_LIBDIR:PATH=lib"
-)
+# if not on Windows
+if(NOT WIN32)
+  # check for prerequisite RPMs
+
+  message(STATUS "Checking for cgns-devel RPM")
+  execute_process(COMMAND rpm -q cgns-devel
+    RESULT_VARIABLE RPM_Q_CGNS_DEVEL OUTPUT_QUIET)
+
+  message(STATUS "Checking for hdf5-devel RPM")
+  execute_process(COMMAND rpm -q hdf5-devel
+    RESULT_VARIABLE RPM_Q_HDF5_DEVEL OUTPUT_QUIET)
+
+endif(NOT WIN32)
+
+# if on Windows, or any prerequisite RPMs are not installed
+if(WIN32 OR RPM_Q_HDF5_DEVEL OR RPM_Q_CGNS_DEVEL)
+  # override LIBDIR to be consistent w/ hdf5 and cgns
+  set(BUILD_OPTIONS 
+    "-DCMAKE_INSTALL_PREFIX:PATH=${CTEST_SCRIPT_DIRECTORY}/lib/install/iriclib/${CONF_DIR}"
+    "-DCMAKE_PREFIX_PATH:PATH=${PREFIX_PATH}"
+    "-DCMAKE_INSTALL_LIBDIR:PATH=lib"
+    )
+endif(WIN32 OR RPM_Q_HDF5_DEVEL OR RPM_Q_CGNS_DEVEL)
 
 CTEST_START("Experimental")
 CTEST_CONFIGURE(BUILD "${CTEST_BINARY_DIRECTORY}"
