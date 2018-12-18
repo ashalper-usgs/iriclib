@@ -31,16 +31,21 @@ developing applications that use %{name}.
 
 
 %build
-mkdir _build
-cd _build
-%cmake ..
-make %{?_smp_mflags}
+GENERATOR="Unix Makefiles"
+SGEN="gcc"
+
+export GENERATOR SGEN
+
+./build-iriclib.sh
+
+# TODO: this might not be necessary for RPM build
+./create-paths-pri-solver.sh > paths.pri
+./create-dirExt-prop-solver.sh > dirExt.prop
 
 
 %install
 rm -rf $RPM_BUILD_ROOT
-cd _build
-%make_install
+find -type f -name '*.so*' -or -name '*.h'
 
 
 %files
