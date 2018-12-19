@@ -8,6 +8,7 @@ URL:            http://i-ric.org/en/
 Source0:        https://github.com/ashalper-usgs/%{name}/archive/rpmbuild.zip
 
 BuildRequires:  cgnslib, cgnslib-devel
+Requires:       cgnslib
 
 %description
 iRICXXX (International River Interface Cooperative) is a river flow
