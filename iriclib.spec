@@ -28,7 +28,7 @@ developing applications that use %{name}.
 
 
 %prep
-%setup -q -n %{name}
+%setup -q -n %{name}-rpmbuild
 
 
 %build
