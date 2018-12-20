@@ -19,9 +19,12 @@ endif()
 
 find_library(CGNS_LIBRARY cgns)
 
-# if HDF5 not found...
-if(NOT HDF5)
-  # ...try again
+# look for system installed HDF5
+find_package(HDF5)
+
+# if system HDF5 not found...
+if(NOT HDF5_FOUND)
+  # ...try again (locally?)
   find_package(HDF5 NAMES hdf5)
 endif()
 
