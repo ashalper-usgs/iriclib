@@ -84,5 +84,5 @@ find -type f -name '*.so*' -or -name '*.h'
 
 
 %changelog
-* Wed Dec 19 2018 Andrew Halper <ashalper@usgs.gov> - 0.1-1>
+* Thu Dec 20 2018 Andrew Halper <ashalper@usgs.gov> - 0.1-1
 - Built on CentOS 7.
