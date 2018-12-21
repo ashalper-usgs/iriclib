@@ -53,5 +53,5 @@ cd _build && %make_install
 %{_includedir}/private/*.h
 
 %changelog
-* Thu Dec 20 2018 Andrew Halper <ashalper@usgs.gov> - 0.1-1
+* Fri Dec 21 2018 Andrew Halper <ashalper@usgs.gov> - 0.1-1
 - Built on CentOS 7.
